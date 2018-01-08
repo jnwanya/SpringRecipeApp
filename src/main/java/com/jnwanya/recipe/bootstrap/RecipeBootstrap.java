@@ -4,9 +4,11 @@ import com.jnwanya.recipe.domain.*;
 import com.jnwanya.recipe.repositories.CategoryRepository;
 import com.jnwanya.recipe.repositories.RecipeRepository;
 import com.jnwanya.recipe.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import java.util.Optional;
  * Created by Jnwanya on
  * Mon, 08 Jan, 2018.
  */
+@Slf4j
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent>{
 
@@ -31,7 +34,9 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     }
 
     @Override
+    @Transactional
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        log.debug("Loading bootstrap data");
         recipeRepository.saveAll(getRecipes());
     }
 
@@ -129,6 +134,8 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         guacRecipe.setServings(4);
         guacRecipe.setSource("Simply Recipes");
 
+        log.debug("guacRecipe properties set successfully");
+
         //add to return list
         recipes.add(guacRecipe);
 
@@ -191,6 +198,8 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         tacosRecipe.setUrl("http://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
         tacosRecipe.setServings(4);
         tacosRecipe.setSource("Simply Recipes");
+
+        log.debug("tacosRecipe properties set successfully");
 
         recipes.add(tacosRecipe);
         return recipes;
