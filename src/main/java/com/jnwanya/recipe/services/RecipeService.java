@@ -1,5 +1,6 @@
 package com.jnwanya.recipe.services;
 
+import com.jnwanya.recipe.commands.RecipeCommand;
 import com.jnwanya.recipe.domain.Recipe;
 
 import java.util.Set;
@@ -13,4 +14,6 @@ public interface RecipeService {
     Set<Recipe> getRecipes();
 
     Recipe findById(Long id);
+
+    RecipeCommand saveRecipeCommand(RecipeCommand recipeCommand);
 }

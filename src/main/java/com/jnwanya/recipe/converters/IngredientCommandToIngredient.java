@@ -4,11 +4,13 @@ import com.jnwanya.recipe.commands.IngredientCommand;
 import com.jnwanya.recipe.domain.Ingredient;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by Jnwanya on
  * Tue, 09 Jan, 2018.
  */
+@Component
 public class IngredientCommandToIngredient implements Converter<IngredientCommand, Ingredient> {
 
     private final UnitOfMeasureCommandToUnitOfMeasure uomConverter;

@@ -3,13 +3,17 @@ package com.jnwanya.recipe.converters;
 import com.jnwanya.recipe.commands.RecipeCommand;
 import com.jnwanya.recipe.domain.Recipe;
 import lombok.Synchronized;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by Jnwanya on
  * Tue, 09 Jan, 2018.
  */
+@Slf4j
+@Component
 public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
 
     private final CategoryCommandToCategory categoryConveter;
