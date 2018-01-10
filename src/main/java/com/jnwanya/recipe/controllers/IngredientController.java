@@ -1,5 +1,6 @@
 package com.jnwanya.recipe.controllers;
 
+import com.jnwanya.recipe.services.IngredientService;
 import com.jnwanya.recipe.services.RecipeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -18,8 +19,11 @@ public class IngredientController {
 
     private final RecipeService recipeService;
 
-    public IngredientController(RecipeService recipeService) {
+    private final IngredientService ingredientService;
+
+    public IngredientController(RecipeService recipeService, IngredientService ingredientService) {
         this.recipeService = recipeService;
+        this.ingredientService = ingredientService;
     }
 
     @GetMapping
@@ -31,4 +35,12 @@ public class IngredientController {
 
         return "recipe/ingredient/list";
     }
+
+    @GetMapping
+    @RequestMapping("/recipe/{recipeId}/ingredient/{id}/show")
+    public String showRecipeIngredient(@PathVariable String recipeId, @PathVariable String id, Model model){
+        model.addAttribute("ingredient", ingredientService.findByRecipeIdAndIngredientId(new Long(recipeId), new Long(id)));
+        return "recipe/ingredient/show";
+    }
+
 }
