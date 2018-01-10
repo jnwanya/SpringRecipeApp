@@ -9,4 +9,6 @@ import com.jnwanya.recipe.commands.IngredientCommand;
 public interface IngredientService {
 
     IngredientCommand findByRecipeIdAndIngredientId(long recipeId, long Id);
+
+    IngredientCommand saveIngredientCommand(IngredientCommand command);
 }
